@@ -22,6 +22,10 @@ case "$1" in
     $CONTEXT/node.sh install
     ;;
   *)
-    sudo docker run --rm -i -t -v $(pwd):/app node "${@}"
+    SCRIPT_PATH=$(realpath -s $0)
+
+    set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
+
+    sudo docker run --rm -i -t -v $(dirname $SCRIPT_PATH):/app node "${@}"
     ;;
 esac
