@@ -44,11 +44,11 @@ for option in "${@}"; do
       fi
       ;;
     *)
-      SCRIPT_PATH=$(realpath -s $1)
-
-      set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
-
-      sudo docker run --rm -i -t -v $(dirname $SCRIPT_PATH):/app simpledrupalcloud/node "${@}"
+#      SCRIPT_PATH=$(realpath -s $1)
+#
+#      set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
+#
+#      sudo docker run --rm -i -t -v $(dirname $SCRIPT_PATH):/app simpledrupalcloud/node "${@}"
       ;;
   esac
 done
