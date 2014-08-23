@@ -5,11 +5,6 @@ node default {
     mode => 755
   }
 
-  file { '/etc/puppet/manifests/run.pp':
-    ensure => present,
-    source => '/tmp/build/etc/puppet/manifests/run.pp'
-  }
-
   package { 'curl':
     ensure => present
   }
