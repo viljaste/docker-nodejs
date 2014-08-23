@@ -1,4 +1,7 @@
 docker-node
 =================
 
-    $ docker run --name node -d simpledrupalcloud/node
+Build the Docker image
+----------------------
+
+    $ docker build -t node simpledrupalcloud/node

@@ -11,7 +11,7 @@ node default {
   }
 
   package { 'curl':
-    ensure  => 'installed'
+    ensure  => present
   }
 
   exec { 'curl -sL https://deb.nodesource.com/setup | bash -':
