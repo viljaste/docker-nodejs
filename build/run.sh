@@ -2,4 +2,4 @@
 
 puppet apply /etc/puppet/manifests/run.pp
 
-supervisord
+nodejs "$@"
