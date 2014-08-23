@@ -9,4 +9,10 @@ node default {
     ensure => present,
     source => '/tmp/build/etc/puppet/manifests/run.pp'
   }
+
+  package {[
+    'curl'
+  ]:
+    ensure  => 'installed'
+  }
 }
