@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 IMAGE=simpledrupalcloud/node
-SCRIPT_PATH=$(realpath -s $0)
 
 OPTIONS_BUILD=0
 
 install() {
   sudo apt-get install -y curl
+  sudo apt-get install -y realpath
 
   curl -sSL https://get.docker.io/ubuntu/ | sudo bash
 
@@ -15,8 +15,6 @@ install() {
   else
     sudo docker pull ${IMAGE}
   fi
-
-  sudo apt-get install -y realpath
 
   sudo cp ${SCRIPT_PATH} /usr/local/bin/node
 }
