@@ -4,6 +4,4 @@ puppet apply /etc/puppet/manifests/run.pp
 
 cd /context
 
-which node
-
-node "${@}"
+/usr/bin/node "${@}"
