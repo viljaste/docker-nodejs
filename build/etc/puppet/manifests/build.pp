@@ -10,9 +10,17 @@ node default {
     source => '/tmp/build/etc/puppet/manifests/run.pp'
   }
 
-  package {[
-    'curl'
-  ]:
+  package { 'curl':
     ensure  => 'installed'
+  }
+
+  exec { 'curl -sL https://deb.nodesource.com/setup | bash -':
+    command => 'curl -sL https://deb.nodesource.com/setup | bash -',
+    require => Package['curl']
+  }
+
+  package { 'nodejs':
+    ensure  => 'installed',
+    require => Exec['curl -sL https://deb.nodesource.com/setup | bash -']
   }
 }
