@@ -10,6 +10,8 @@ install() {
 
   curl -sSL https://get.docker.io/ubuntu/ | sudo bash
 
+  SCRIPT_PATH=$(realpath -s $0)
+
   if [ "${OPTIONS_BUILD}" -eq 1 ]; then
     sudo docker build -t ${IMAGE} $(dirname ${SCRIPT_PATH})
   else
