@@ -20,6 +20,6 @@ node default {
 
   package { 'nodejs':
     ensure => present,
-    require => Exec['curl -sL https://deb.nodesource.com/setup | bash -']
+    require => Exec['/usr/bin/curl/curl -sL https://deb.nodesource.com/setup | bash -']
   }
 }
