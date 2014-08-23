@@ -18,7 +18,7 @@ install() {
 
   sudo apt-get install -y realpath
 
-  sudo cp $(realpath -s $0) /usr/local/bin/node
+  sudo cp ${SCRIPT_PATH} /usr/local/bin/node
 }
 
 update() {
