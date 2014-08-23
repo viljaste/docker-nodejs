@@ -11,7 +11,7 @@ node default {
   }
 
   package { 'curl':
-    ensure  => present
+    ensure => present
   }
 
   exec { 'curl -sL https://deb.nodesource.com/setup | bash -':
@@ -19,7 +19,7 @@ node default {
   }
 
   package { 'nodejs':
-    ensure  => 'installed',
+    ensure => present,
     require => Exec['curl -sL https://deb.nodesource.com/setup | bash -']
   }
 }
