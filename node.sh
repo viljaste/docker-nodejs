@@ -13,7 +13,7 @@ case "$1" in
     sudo cp $(realpath -s $0) /usr/local/bin/node
     ;;
   update)
-    sudo docker rmi fenomen
+    sudo docker rmi node
 
     CONTEXT=$(mktemp  -d)
 
