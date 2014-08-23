@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case "$1" in
-  install)
+  build)
     sudo apt-get install -y curl
 
     curl -sSL https://get.docker.io/ubuntu/ | sudo bash
@@ -19,10 +19,10 @@ case "$1" in
 
     git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git $CONTEXT
 
-    $CONTEXT/node.sh install
+    $CONTEXT/node.sh build
     ;;
   *)
-    SCRIPT_PATH=$(realpath -s $0)
+    SCRIPT_PATH=$(realpath -s $1)
 
     set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
 
