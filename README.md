@@ -8,4 +8,4 @@ Build the Docker image
 
 Run the Docker container
 
-    $ docker run --rm -i -t -v $(pwd):/context node app.js
+    $ docker run --rm -i -t -v $(pwd):/app node app.js
