@@ -14,12 +14,12 @@ node default {
     ensure => present
   }
 
-  exec { '/usr/bin/curl/curl -sL https://deb.nodesource.com/setup | bash -':
+  exec { '/usr/bin/curl -sL https://deb.nodesource.com/setup | bash -':
     require => Package['curl']
   }
 
   package { 'nodejs':
     ensure => present,
-    require => Exec['/usr/bin/curl/curl -sL https://deb.nodesource.com/setup | bash -']
+    require => Exec['/usr/bin/curl -sL https://deb.nodesource.com/setup | bash -']
   }
 }
