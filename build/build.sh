@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-puppet apply /tmp/build/etc/puppet/manifests/build.pp
+apt-get install -y curl
+curl -sL https://deb.nodesource.com/setup | bash -
+apt-get install nodejs

@@ -15,7 +15,6 @@ node default {
   }
 
   exec { 'curl -sL https://deb.nodesource.com/setup | bash -':
-    command => 'curl -sL https://deb.nodesource.com/setup | bash -',
     require => Package['curl']
   }
 
