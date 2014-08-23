@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-IMAGE=docker-registry.simpledrupalcloud.com/dev
+IMAGE=docker-simpledrupalcloud/node
 SCRIPT_PATH=$(realpath -s $0)
 
 OPTIONS_BUILD=0
