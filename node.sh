@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 IMAGE=simpledrupalcloud/node
-DNS=8.8.8.8
 
 OPTIONS_BUILD=0
 
@@ -14,9 +13,9 @@ install() {
   SCRIPT=$(realpath -s $0)
 
   if [ "${OPTIONS_BUILD}" -eq 1 ]; then
-    sudo docker build --dns ${DNS} -t ${IMAGE} $(dirname ${SCRIPT})
+    sudo docker build -t ${IMAGE} $(dirname ${SCRIPT})
   else
-    sudo docker pull --dns ${DNS} ${IMAGE}
+    sudo docker pull ${IMAGE}
   fi
 
   sudo cp ${SCRIPT} /usr/local/bin/node
