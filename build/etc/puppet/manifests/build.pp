@@ -5,8 +5,12 @@ node default {
     mode => 755
   }
 
+  exec { '/usr/bin/apt-get update':
+  }
+
   package { 'curl':
-    ensure => present
+    ensure => present,
+    require => Exec['/usr/bin/apt-get update']
   }
 
   exec { '/usr/bin/curl -sL https://deb.nodesource.com/setup | bash -':
