@@ -4,37 +4,6 @@ IMAGE=simpledrupalcloud/node
 
 OPTIONS_BUILD=0
 
-install() {
-  sudo apt-get install -y curl
-  sudo apt-get install -y realpath
-
-  curl -sSL https://get.docker.io/ubuntu/ | sudo bash
-
-  SCRIPT=$(realpath -s $0)
-
-  if [ "${OPTIONS_BUILD}" -eq 1 ]; then
-    sudo docker build -t ${IMAGE} $(dirname ${SCRIPT})
-  else
-    sudo docker pull ${IMAGE}
-  fi
-
-  sudo cp ${SCRIPT} /usr/local/bin/node
-}
-
-update() {
-  sudo docker rmi ${IMAGE}
-
-  CONTEXT=$(mktemp  -d)
-
-  git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git $CONTEXT
-
-  if [ "${OPTIONS_BUILD}" -eq 1 ]; then
-    $CONTEXT/node.sh -b install
-  else
-    $CONTEXT/node.sh install
-  fi
-}
-
 for option in "${@}"; do
   case "${option}" in
     -b|--build)
@@ -46,10 +15,33 @@ done
 for option in "${@}"; do
   case "${option}" in
     install)
-      install
+      sudo apt-get install -y curl
+      sudo apt-get install -y realpath
+
+      curl -sSL https://get.docker.io/ubuntu/ | sudo bash
+
+      SCRIPT=$(realpath -s $0)
+
+      if [ "${OPTIONS_BUILD}" -eq 1 ]; then
+        sudo docker build -t ${IMAGE} $(dirname ${SCRIPT})
+      else
+        sudo docker pull ${IMAGE}
+      fi
+
+      sudo cp ${SCRIPT} /usr/local/bin/node
       ;;
     update)
-      update
+      sudo docker rmi ${IMAGE}
+
+      CONTEXT=$(mktemp  -d)
+
+      git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git $CONTEXT
+
+      if [ "${OPTIONS_BUILD}" -eq 1 ]; then
+        $CONTEXT/node.sh -b install
+      else
+        $CONTEXT/node.sh install
+      fi
       ;;
     *)
       SCRIPT_PATH=$(realpath -s $1)
