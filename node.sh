@@ -1,31 +1,51 @@
 #!/usr/bin/env bash
 
-case "$1" in
-  build)
-    sudo apt-get install -y curl
+BUILD=0
 
-    curl -sSL https://get.docker.io/ubuntu/ | sudo bash
+for option in "${@}"; do
+  case "${option}" in
+    -b|--build)
+      BUILD=1
+      ;;
+  esac
+done
 
-    sudo docker build -t fenomen .
+for option in "${@}"; do
+  case "${option}" in
+    install)
+      sudo apt-get install -y curl
 
-    sudo apt-get install -y realpath
+      curl -sSL https://get.docker.io/ubuntu/ | sudo bash
 
-    sudo cp $(realpath -s $0) /usr/local/bin/node
-    ;;
-  update)
-    sudo docker rmi node
+      if [ "${BUILD}" -eq 1 ]; then
+        sudo docker build -t simpledrupalcloud/node .
+      else
+        sudo docker pull simpledrupalcloud/node
+      fi
 
-    CONTEXT=$(mktemp  -d)
+      sudo apt-get install -y realpath
 
-    git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git $CONTEXT
+      sudo cp $(realpath -s $0) /usr/local/bin/node
+      ;;
+    update)
+      sudo docker rmi node
 
-    $CONTEXT/node.sh build
-    ;;
-  *)
-    SCRIPT_PATH=$(realpath -s $1)
+      CONTEXT=$(mktemp  -d)
 
-    set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
+      git clone http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git $CONTEXT
 
-    sudo docker run --rm -i -t -v $(dirname $SCRIPT_PATH):/app node "${@}"
-    ;;
-esac
+      if [ "${BUILD}" -eq 1 ]; then
+        $CONTEXT/node.sh -b install
+      else
+        $CONTEXT/node.sh install
+      fi
+      ;;
+    *)
+      SCRIPT_PATH=$(realpath -s $1)
+
+      set -- "${@:1:2}" $(basename $SCRIPT_PATH) "${@:4}"
+
+      sudo docker run --rm -i -t -v $(dirname $SCRIPT_PATH):/app simpledrupalcloud/node "${@}"
+      ;;
+  esac
+done
