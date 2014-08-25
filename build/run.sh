@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 
-cd /app
+cd /context
 
 /usr/bin/node "${@}"
