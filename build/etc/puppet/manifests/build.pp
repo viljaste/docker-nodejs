@@ -5,14 +5,17 @@ node default {
     mode => 755
   }
 
-  exec { '/usr/bin/apt-get update': }
+  exec { 'apt-get update':
+    cwd => ['/usr/bin'],
+  }
 
   package { 'curl':
     ensure => present,
     require => Exec['/usr/bin/apt-get update']
   }
 
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
+  exec { 'bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
+    cwd => ['/bin'],
     require => Package['curl']
   }
 
