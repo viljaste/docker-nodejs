@@ -14,13 +14,12 @@ node default {
     require => Exec['apt-get update']
   }
 
-  exec { 'bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    path => ['/bin', '/usr/bin'],
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
     require => Package['curl']
   }
 
   package { 'nodejs':
     ensure => present,
-    require => Exec['bash -c "curl -sL https://deb.nodesource.com/setup | bash -"']
+    require => Exec['/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"']
   }
 }
