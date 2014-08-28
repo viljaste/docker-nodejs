@@ -6,7 +6,7 @@ node default {
   }
 
   exec { 'apt-get update':
-    cwd => ['/usr/bin'],
+    path => ['/usr/bin'],
   }
 
   package { 'curl':
