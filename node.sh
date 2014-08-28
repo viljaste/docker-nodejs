@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo docker run --rm -t -i -v $(pwd):/src simpledrupalcloud/node "${@}"
+sudo docker run --rm -i -t -v $(pwd):/src simpledrupalcloud/node "${@}"
