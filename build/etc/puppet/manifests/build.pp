@@ -15,7 +15,7 @@ node default {
   }
 
   exec { 'bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    cwd => ['/bin'],
+    path => ['/bin', '/usr/bin'],
     require => Package['curl']
   }
 
