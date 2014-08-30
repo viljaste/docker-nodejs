@@ -1,3 +1,12 @@
+class packages {
+  package {[
+      'curl',
+      'nodejs'
+    ]:
+    ensure => present,
+  }
+}
+
 node default {
   file { '/run.sh':
     ensure => present,
@@ -5,21 +14,14 @@ node default {
     mode => 755
   }
 
+  include packages
+
   exec { 'apt-get update':
     path => ['/usr/bin'],
-  }
-
-  package { 'curl':
-    ensure => present,
-    require => Exec['apt-get update']
+    before => Class['packages']
   }
 
   exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    require => Package['curl']
-  }
-
-  package { 'nodejs':
-    ensure => present,
-    require => Exec['/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"']
+    before => Class['packages']
   }
 }
