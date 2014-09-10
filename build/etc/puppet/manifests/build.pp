@@ -8,10 +8,12 @@ class packages {
 }
 
 class nodejs {
-  package {[
-      'nodejs'
-    ]:
+  package { 'nodejs':
     ensure => present
+  }
+
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -"':
+    require => Package['nodejs']
   }
 }
 
@@ -30,9 +32,5 @@ node default {
   exec { 'apt-get update':
     path => ['/usr/bin'],
     before => Class['packages']
-  }
-
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -"':
-    before => Class['nodejs']
   }
 }
