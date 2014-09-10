@@ -1,9 +1,18 @@
 class packages {
   package {[
       'curl',
+      'sudo',
       'nodejs'
     ]:
-    ensure => present,
+    ensure => present
+  }
+}
+
+class nodejs {
+  package {[
+      'nodejs'
+    ]:
+    ensure => present
   }
 }
 
@@ -15,13 +24,16 @@ node default {
   }
 
   include packages
+  include nodejs
+
+  Class['packages'] -> Class['nodejs']
 
   exec { 'apt-get update':
     path => ['/usr/bin'],
     before => Class['packages']
   }
 
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    before => Exec['apt-get update']
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -':
+    before => Class['nodejs']
   }
 }
