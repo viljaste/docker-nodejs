@@ -32,7 +32,7 @@ node default {
     before => Class['packages']
   }
 
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -':
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -"':
     before => Class['nodejs']
   }
 }
