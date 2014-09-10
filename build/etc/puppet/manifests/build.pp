@@ -22,6 +22,6 @@ node default {
   }
 
   exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    before => Class['packages']
+    before => Exec['apt-get update']
   }
 }
