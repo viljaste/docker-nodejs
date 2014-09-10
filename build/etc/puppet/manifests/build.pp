@@ -1,8 +1,7 @@
 class packages {
   package {[
       'curl',
-      'sudo',
-      'nodejs'
+      'sudo'
     ]:
     ensure => present
   }
