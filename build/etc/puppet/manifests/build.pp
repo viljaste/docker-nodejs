@@ -13,7 +13,7 @@ class nodejs {
   }
 
   exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -"':
-    require => Package['nodejs']
+    before => Package['nodejs']
   }
 }
 
