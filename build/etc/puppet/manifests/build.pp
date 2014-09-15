@@ -1,7 +1,6 @@
 class packages {
   package {[
-      'curl',
-      'sudo'
+      'curl'
     ]:
     ensure => present
   }
@@ -12,7 +11,7 @@ class nodejs {
     ensure => present
   }
 
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | sudo bash -"':
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
     before => Package['nodejs']
   }
 }
