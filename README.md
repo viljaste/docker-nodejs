@@ -1,9 +1,5 @@
-docker-node
-===========
+# docker-nodejs
 
-Build the image
----------------
+## License
 
-    sudo docker build \
-      -t simpledrupalcloud/node \
-      http://git.simpledrupalcloud.com/simpledrupalcloud/docker-node.git
+**MIT**

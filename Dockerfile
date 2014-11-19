@@ -1,13 +1,14 @@
-FROM simpledrupalcloud/base
+FROM simpledrupalcloud/base:latest
 
 MAINTAINER Simple Drupal Cloud <support@simpledrupalcloud.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ADD ./build /tmp/build
+ADD ./src /src
 
-RUN chmod +x /tmp/build/build.sh
-RUN /tmp/build/build.sh
+RUN chmod +x /src/build.sh
+RUN /src/build.sh
+
 RUN rm -rf /tmp/*
 
-ENTRYPOINT ["/run.sh"]
+CMD ["/src/run.sh"]
