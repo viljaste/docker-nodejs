@@ -1,11 +1,5 @@
 class nodejs::packages {
-  exec { 'apt-get update':
-    path => ['/usr/bin']
-  }
-
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"':
-    require => Exec['apt-get update']
-  }
+  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"': }
 
   package {[
       'nodejs'
