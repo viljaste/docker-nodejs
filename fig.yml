@@ -1,0 +1,10 @@
+nodejs:
+  image: simpledrupalcloud/nodejs:dev
+  hostname: nodejs
+  volumes_from:
+    - nodejsdata
+nodejsdata:
+  image: simpledrupalcloud/data:latest
+  hostname: nodejsdata
+  volumes:
+    - /nodejs/data
