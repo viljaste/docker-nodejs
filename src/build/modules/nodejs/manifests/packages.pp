@@ -1,10 +1,10 @@
 class nodejs::packages {
-  exec { '/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"': }
+  exec { '/bin/su - root -c "curl -sL https://deb.nodesource.com/setup | bash -"': }
 
   package {[
       'nodejs'
     ]:
     ensure => present,
-    require => Exec['/bin/bash -c "curl -sL https://deb.nodesource.com/setup | bash -"']
+    require => Exec['/bin/su - root -c "curl -sL https://deb.nodesource.com/setup | bash -"']
   }
 }
