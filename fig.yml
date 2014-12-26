@@ -4,7 +4,7 @@ nodejs:
   volumes_from:
     - nodejsdata
 nodejsdata:
-  image: simpledrupalcloud/data:dev
+  image: simpledrupalcloud/data:latest
   hostname: nodejsdata
   volumes:
     - /nodejs/data
