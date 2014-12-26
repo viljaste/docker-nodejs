@@ -1,0 +1,4 @@
+[program:mongodb]
+command = /usr/bin/socat TCP-LISTEN:<%= @mongodb_port %>,fork TCP:<%= @mongodb_host %>:<%= @mongodb_port %>
+autostart = true
+autorestart = true
