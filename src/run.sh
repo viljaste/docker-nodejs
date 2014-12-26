@@ -7,9 +7,8 @@ export FACTER_MONGODB_PORT="$(echo "${MONGODB_HOST}" | cut -d ":" -f2)"
 
 puppet apply --modulepath=/src/run/modules /src/run/run.pp
 
-mkdir -p /nodejs/data
-
 cd /nodejs/data
 
 npm install
-npm start
+
+/usr/bin/supervisord
