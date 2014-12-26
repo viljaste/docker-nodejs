@@ -1,5 +1,5 @@
 nodejs:
-  image: simpledrupalcloud/nodejs:dev
+  image: simpledrupalcloud/nodejs:latest
   hostname: nodejs
   volumes_from:
     - nodejsdata
